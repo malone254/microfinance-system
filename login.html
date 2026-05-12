@@ -1,55 +1,214 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Login</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malone Lending - Login</title>
 
 <style>
-body{background:#0b1220;color:white;font-family:Inter;text-align:center;padding:40px}
-
-input{
-  width:80%;
-  padding:12px;
-  margin:10px;
-  border-radius:8px;
-  border:none;
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0b1220;
+  color:white;
 }
 
-button{
-  padding:12px 20px;
-  background:#22c55e;
+/* HEADER */
+header{
+  text-align:center;
+  padding:30px 20px 10px;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:800;
+  color:#22c55e;
+}
+
+.subtitle{
+  margin-top:10px;
+  font-size:18px;
+  font-weight:600;
+}
+
+.desc{
+  opacity:0.7;
+  margin-top:5px;
+}
+
+/* LOGIN BOX */
+.container{
+  max-width:400px;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background:#111827;
+  padding:20px;
+  border-radius:12px;
+  margin-top:20px;
+}
+
+label{
+  font-size:14px;
+  opacity:0.8;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:8px;
+  margin-bottom:15px;
   border:none;
   border-radius:8px;
+  outline:none;
+}
+
+/* PHONE INPUT STYLE */
+.phone-box{
+  display:flex;
+  gap:10px;
+}
+
+.prefix{
+  width:80px;
+  background:#0f172a;
+  text-align:center;
+  padding:12px;
+  border-radius:8px;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#22c55e;
+  color:black;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TERMS */
+.terms{
+  font-size:12px;
+  opacity:0.7;
+  margin-top:15px;
+  line-height:1.5;
+}
+
+/* SUPPORT */
+.support{
+  margin-top:30px;
+  text-align:center;
+  font-size:14px;
+  opacity:0.8;
+}
+
+hr{
+  border:0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin:20px 0;
+}
+
+/* FOOTER LINKS */
+.footer-links{
+  text-align:center;
+  font-size:12px;
+  opacity:0.6;
+  margin-top:20px;
+}
+
+.footer-links a{
+  color:white;
+  display:block;
+  margin:5px 0;
+  text-decoration:none;
+  opacity:0.7;
+}
+
+.social{
+  text-align:center;
+  margin-top:15px;
 }
 </style>
 </head>
 
 <body>
 
-<h2>Login</h2>
+<header>
+  <div class="logo">MALONE</div>
+  <div class="subtitle">Get loan online within 15 minutes</div>
+  <div class="desc">Fast and safe apply</div>
+</header>
 
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
+<div class="container">
 
-<br>
-<button onclick="login()">Login</button>
+  <div class="card">
+
+    <p><b>To apply for a loan, enter your phone number</b></p>
+
+    <div class="phone-box">
+      <div class="prefix">+254</div>
+      <input type="tel" placeholder="Phone number">
+    </div>
+
+    <button onclick="continueLogin()">Continue</button>
+
+    <div class="terms">
+      By clicking on the "Continue" button, I confirm that I have read and accept the Terms & Conditions,
+      Privacy Policy, and that the specified phone number is mine and the M-Pesa account is connected to it.
+    </div>
+
+  </div>
+
+  <div class="support">
+    <hr>
+
+    <b>Support service</b><br>
+    0709-029-000<br>
+    Mon-Sun: 8am - 6pm
+
+    <br><br>
+
+    <b>Mail Addresses</b><br>
+    customer@lendplus.ke
+
+    <br><br>
+
+    <b>Application acceptance</b><br>
+    24/7
+  </div>
+
+  <div class="social">
+    🔵 ⚫ 🟢
+  </div>
+
+  <div class="footer-links">
+    © 2021-2026 ALL RIGHTS RESERVED. AVENTUS TECHNOLOGY LIMITED IS A COMPANY DULY INCORPORATED AND REGISTERED UNDER THE LAWS OF KENYA WITH REGISTRATION NO. PVT-GYUKVZZ GRANTED BY THE REGISTRAR OF COMPANIES OF KENYA.
+
+    <a href="terms.html">Privacy policy</a>
+    <a href="terms.html">Terms and conditions</a>
+    <a href="#">Account Cancellation</a>
+    <a href="#">Referral Bonuses</a>
+    <a href="#">Licensed & regulated by CBK 2025</a>
+  </div>
+
+</div>
 
 <script>
-async function login(){
-  const res = await fetch("http://localhost:5000/api/auth/login",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      email:email.value,
-      password:password.value
-    })
-  });
+function continueLogin(){
+  const phone = document.querySelector("input").value;
 
-  const data = await res.json();
+  if(phone.length < 9){
+    alert("Enter valid phone number");
+    return;
+  }
 
-  localStorage.setItem("token",data.token);
-
-  location.href="dashboard.html";
+  localStorage.setItem("phone", "+254"+phone);
+  window.location.href = "terms.html";
 }
 </script>
 
