@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LendPlus Dashboard</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -13,119 +13,67 @@ body{
   font-family:Inter;
   background:#0b1220;
   color:white;
-  line-height:1.5;
 }
 
-/* TOP BAR */
 .topbar{
+  padding:15px 10%;
+  background:#0f172a;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  padding:18px 10%;
-  background:#0f172a;
-  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .logo{
   color:#22c55e;
   font-weight:800;
-  font-size:18px;
 }
 
-/* CONTAINER */
 .container{
-  padding:40px 10%;
+  padding:30px 10%;
   max-width:900px;
   margin:auto;
 }
 
-/* CARD */
 .card{
   background:#111827;
-  padding:28px;
-  border-radius:16px;
-  margin-bottom:25px;
+  padding:25px;
+  border-radius:14px;
+  margin-bottom:20px;
   border:1px solid rgba(255,255,255,0.06);
-  box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* TITLE */
 .title{
   color:#22c55e;
   font-weight:700;
-  font-size:18px;
-  margin-bottom:18px;
+  margin-bottom:15px;
 }
 
-/* INPUTS */
 input, select{
   width:100%;
-  padding:14px;
-  margin:10px 0;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.08);
+  padding:13px;
+  margin:8px 0;
+  border-radius:10px;
   background:#0f172a;
+  border:1px solid rgba(255,255,255,0.08);
   color:white;
-  font-size:14px;
   outline:none;
 }
 
-input:focus, select:focus{
-  border-color:#22c55e;
-}
-
-/* TWO COLUMN */
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-@media(max-width:700px){
-  .row{
-    grid-template-columns:1fr;
-  }
-}
-
-/* BUTTON */
 button{
   width:100%;
-  padding:15px;
+  padding:14px;
   border:none;
   border-radius:12px;
   background:#22c55e;
   font-weight:700;
-  font-size:15px;
-  margin-top:18px;
+  margin-top:15px;
   cursor:pointer;
-  transition:0.3s;
 }
 
-button:hover{
-  transform:scale(1.02);
-}
+.step{ display:none; }
+.step.active{ display:block; }
 
-/* STEP CONTROL */
-.step{
-  display:none;
-}
-
-.step.active{
-  display:block;
-}
-
-/* PROGRESS */
 .progress{
-  margin-bottom:20px;
-  font-size:13px;
-  opacity:0.7;
-}
-
-/* FOOTER SPACE */
-footer{
-  text-align:center;
-  padding:40px 20px;
-  font-size:12px;
+  margin-bottom:15px;
   opacity:0.7;
 }
 </style>
@@ -145,164 +93,131 @@ footer{
 <div class="card step active">
   <div class="title">Personal Information</div>
 
-  <div class="row">
-    <input placeholder="First Name">
-    <input placeholder="Middle Name (optional)">
-  </div>
+  <input id="fn" placeholder="First Name">
+  <input id="ln" placeholder="Last Name">
+  <input id="idno" placeholder="National ID">
+  <input id="email" placeholder="Email">
 
-  <input placeholder="Last Name">
-
-  <input type="text" id="dobText" placeholder="Date of Birth (tap to select)" readonly onclick="pickDOB()">
-  <input type="date" id="dob" style="opacity:0;position:absolute;" onchange="setDOB()">
-
-  <div class="row">
-    <input placeholder="National ID">
-    <input placeholder="Email">
-  </div>
-
-  <select>
-    <option>Gender</option>
+  <select id="gender">
+    <option value="">Gender</option>
     <option>Male</option>
     <option>Female</option>
   </select>
 
-  <button onclick="next()">Continue</button>
+  <button onclick="validateStep1()">Continue</button>
 </div>
 
 <!-- STEP 2 -->
 <div class="card step">
-  <div class="title">Location Information</div>
+  <div class="title">Location</div>
 
-  <select>
-    <option>County</option>
+  <select id="county">
+    <option value="">County</option>
     <option>Nairobi</option>
     <option>Mombasa</option>
     <option>Kisumu</option>
     <option>Nakuru</option>
-    <option>Kiambu</option>
-    <option>Machakos</option>
   </select>
 
-  <input placeholder="Town">
+  <input id="town" placeholder="Town">
 
-  <button onclick="next()">Continue</button>
+  <button onclick="validateStep2()">Continue</button>
 </div>
 
 <!-- STEP 3 -->
 <div class="card step">
-  <div class="title">Education & Employment</div>
+  <div class="title">Employment</div>
 
-  <select>
-    <option>Education</option>
+  <select id="edu">
+    <option value="">Education</option>
     <option>Primary</option>
     <option>Secondary</option>
     <option>College</option>
     <option>University</option>
   </select>
 
-  <select>
-    <option>Employment Type</option>
+  <select id="job">
+    <option value="">Employment Type</option>
     <option>Employed</option>
     <option>Self Employed</option>
     <option>Business</option>
     <option>Unemployed</option>
   </select>
 
-  <button onclick="next()">Continue</button>
+  <button onclick="validateStep3()">Continue</button>
 </div>
 
 <!-- STEP 4 -->
 <div class="card step">
-  <div class="title">Financial Information</div>
+  <div class="title">Income</div>
 
-  <select>
-    <option>Monthly Income</option>
-    <option>Below 10,000</option>
-    <option>10,000 - 30,000</option>
-    <option>30,000 - 50,000</option>
-    <option>50,000+</option>
+  <select id="income">
+    <option value="">Monthly Income</option>
+    <option>Below 10k</option>
+    <option>10k - 30k</option>
+    <option>30k - 50k</option>
+    <option>50k+</option>
   </select>
 
-  <select>
-    <option>Do you have active loan?</option>
+  <select id="loan">
+    <option value="">Active Loan?</option>
     <option>Yes</option>
     <option>No</option>
   </select>
 
-  <button onclick="next()">Continue</button>
+  <button onclick="validateStep4()">Continue</button>
 </div>
 
 <!-- STEP 5 -->
 <div class="card step">
-  <div class="title">Device & Consent</div>
+  <div class="title">Consent</div>
 
-  <select>
-    <option>Do you agree to be contacted?</option>
+  <select id="contact">
+    <option value="">Agree to contact?</option>
     <option>Yes</option>
     <option>No</option>
   </select>
 
-  <select>
-    <option>Only user of device?</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
-
-  <button onclick="next()">Continue</button>
+  <button onclick="validateStep5()">Continue</button>
 </div>
 
 <!-- STEP 6 -->
 <div class="card step">
   <div class="title">Contact Person</div>
 
-  <input placeholder="Contact Person Name">
+  <input id="cname" placeholder="Contact Name">
+  <input id="cphone" placeholder="Contact Phone">
 
-  <div class="row">
-    <div style="background:#0f172a;padding:14px;border-radius:12px;text-align:center;">+254</div>
-    <input placeholder="Phone Number">
-  </div>
-
-  <select>
-    <option>Relationship</option>
+  <select id="rel">
+    <option value="">Relationship</option>
     <option>Parent</option>
     <option>Friend</option>
     <option>Sibling</option>
-    <option>Spouse</option>
   </select>
 
-  <button onclick="next()">Continue</button>
+  <button onclick="validateStep6()">Continue</button>
 </div>
 
 <!-- STEP 7 -->
 <div class="card step">
-  <div class="title">Review Details</div>
-
-  <p style="opacity:0.8">
-    Please ensure all your details are correct before submitting your application.
-  </p>
+  <div class="title">Review</div>
+  <p>Please confirm all data is correct.</p>
 
   <button onclick="next()">Continue</button>
 </div>
 
 <!-- STEP 8 -->
 <div class="card step">
-  <div class="title">Submit Application</div>
-
-  <p style="opacity:0.8">
-    By submitting you agree to Privacy Policy & Terms.
-  </p>
+  <div class="title">Submit</div>
+  <p>Submit your loan application.</p>
 
   <button onclick="finish()">Submit</button>
 </div>
 
 </div>
 
-<footer>
-© 2021–2026 ALL RIGHTS RESERVED. AVENTUS TECHNOLOGY LIMITED<br><br>
-Privacy policy | Terms and conditions | Account Cancellation | Referral Bonuses | Licensed & regulated by CBK 2025
-</footer>
-
 <script>
+
 let step = 0;
 const steps = document.querySelectorAll(".step");
 
@@ -311,31 +226,72 @@ function show(){
     s.classList.remove("active");
     if(i===step) s.classList.add("active");
   });
-
   document.getElementById("progress").innerText =
   "Step " + (step+1) + " of 8";
 }
 
 function next(){
-  if(step < steps.length-1){
-    step++;
-    show();
+  step++;
+  show();
+}
+
+/* VALIDATION FUNCTIONS */
+
+function validateStep1(){
+  if(
+    !fn.value || !ln.value || !idno.value || !email.value || !gender.value
+  ){
+    alert("Fill all Personal Information");
+    return;
   }
+  next();
+}
+
+function validateStep2(){
+  if(!county.value || !town.value){
+    alert("Fill Location details");
+    return;
+  }
+  next();
+}
+
+function validateStep3(){
+  if(!edu.value || !job.value){
+    alert("Fill Employment details");
+    return;
+  }
+  next();
+}
+
+function validateStep4(){
+  if(!income.value || !loan.value){
+    alert("Fill Income details");
+    return;
+  }
+  next();
+}
+
+function validateStep5(){
+  if(!contact.value){
+    alert("Select consent option");
+    return;
+  }
+  next();
+}
+
+function validateStep6(){
+  if(!cname.value || !cphone.value || !rel.value){
+    alert("Fill contact person details");
+    return;
+  }
+  next();
 }
 
 function finish(){
   window.location.href = "confirm.html";
 }
 
-function pickDOB(){
-  document.getElementById("dob").click();
-}
-
-function setDOB(){
-  document.getElementById("dobText").value =
-  document.getElementById("dob").value;
-}
 </script>
 
 </body>
-      </html>
+</html>
