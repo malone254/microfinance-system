@@ -1,57 +1,253 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Dashboard</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Malone Lending</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body{background:#0b1220;color:white;font-family:Inter;padding:20px}
+body{
+  margin:0;
+  font-family:Inter;
+  background:#0b1220;
+  color:white;
+}
 
+/* TOP BAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 8%;
+  background:#0f172a;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  font-weight:800;
+  color:#22c55e;
+  font-size:20px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:white;
+  background:#111827;
+  padding:10px 14px;
+  border-radius:10px;
+  margin-left:8px;
+  font-size:13px;
+}
+
+/* PAGE WRAPPER */
+.wrapper{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* CARD */
 .card{
   background:#111827;
   padding:20px;
-  margin:10px;
-  border-radius:10px;
+  border-radius:14px;
+  margin-bottom:18px;
+  border:1px solid rgba(255,255,255,0.05);
 }
 
+.title{
+  font-size:18px;
+  font-weight:700;
+  color:#22c55e;
+  margin-bottom:15px;
+}
+
+/* INPUTS */
+input, select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:#0f172a;
+  color:white;
+  outline:none;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* BUTTON */
 button{
-  padding:10px;
+  width:100%;
+  padding:14px;
   background:#22c55e;
+  color:black;
   border:none;
-  border-radius:8px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:25px;
+  font-size:12px;
+  opacity:0.7;
+}
+
+.footer a{
+  color:white;
+  text-decoration:none;
+  margin:0 5px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<h2>User Dashboard</h2>
-
-<div class="card">
-  <h3>Apply Loan</h3>
-  <button onclick="location.href='apply-loan.html'">Apply</button>
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">MALONE</div>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="login.html">Logout</a>
+  </div>
 </div>
 
+<div class="wrapper">
+
+<!-- PERSONAL INFO -->
 <div class="card">
-  <h3>My Loans</h3>
-  <div id="loans"></div>
+  <div class="title">Personal Information</div>
+
+  <div class="grid">
+    <input placeholder="First Name">
+    <input placeholder="Middle Name (optional)">
+  </div>
+
+  <input placeholder="Last Name">
+
+  <div class="grid">
+    <input type="date">
+    <input placeholder="National ID Number">
+  </div>
+
+  <input placeholder="Email">
+
+  <select>
+    <option>Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <input placeholder="+254 Alternative Phone (optional)">
+</div>
+
+<!-- ADDITIONAL INFO -->
+<div class="card">
+  <div class="title">Additional Information</div>
+
+  <div class="grid">
+    <select><option>County</option></select>
+    <input placeholder="Town">
+  </div>
+
+  <div class="grid">
+    <select><option>Education</option></select>
+    <select><option>Employment Type</option></select>
+  </div>
+
+  <input placeholder="Monthly Income">
+
+  <select>
+    <option>Do you have children under 18?</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <select>
+    <option>Do you have an active loan?</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <select>
+    <option>Agree to be contacted?</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <select>
+    <option>Only user of device?</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <select>
+    <option>Receive monthly income?</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+</div>
+
+<!-- CONTACT PERSON -->
+<div class="card">
+  <div class="title">Contact Person</div>
+
+  <input placeholder="Contact Name">
+  <input placeholder="+254 Contact Phone">
+
+  <select>
+    <option>Relationship</option>
+    <option>Family</option>
+    <option>Friend</option>
+    <option>Colleague</option>
+  </select>
+
+  <!-- UPDATED BUTTON FLOW -->
+  <button onclick="submitForm()">Continue</button>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+Support service: 0709-029-000 | customer@lendplus.ke <br><br>
+
+© 2021-2026 ALL RIGHTS RESERVED. AVENTUS TECHNOLOGY LIMITED IS A COMPANY DULY INCORPORATED AND REGISTERED UNDER THE LAWS OF KENYA WITH REGISTRATION NO. PVT-GYUKVZZ GRANTED BY THE REGISTRAR OF COMPANIES OF KENYA.<br><br>
+
+<a href="#">Privacy policy</a>
+<a href="#">Terms</a>
+<a href="#">Account Cancellation</a>
+<a href="#">Referral Bonuses</a>
+<br>
+Licensed & regulated by CBK 2025
+
 </div>
 
 <script>
-async function loadLoans(){
-  const token = localStorage.getItem("token");
-
-  const res = await fetch("http://localhost:5000/api/loans",{
-    headers:{Authorization:token}
-  });
-
-  const data = await res.json();
-
-  document.getElementById("loans").innerHTML =
-    data.map(l=>`<p>${l.amount} - ${l.status}</p>`).join("");
+function submitForm(){
+  window.location.href = "confirm.html";
 }
-
-loadLoans();
 </script>
 
 </body>
