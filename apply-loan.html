@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Apply Loan</title>
+<title>Loan Application</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
   font-family:Inter;
-  background:#0f172a;
+  background:#0b1220;
   color:white;
   text-align:center;
-  padding:50px;
+  padding:20px;
 }
 
-input{
-  width:80%;
+input, select{
+  width:85%;
   padding:12px;
-  margin:10px;
+  margin:8px;
   border:none;
   border-radius:8px;
 }
@@ -33,14 +33,56 @@ button{
 
 <body>
 
-<h2>Loan Application</h2>
+<h2>Loan Application Form</h2>
 
-<input placeholder="Amount (KES)">
-<input placeholder="Months">
+<input id="name" placeholder="Full Name">
+<input id="idno" placeholder="National ID">
+<input id="phone" placeholder="Phone Number">
+<input id="email" placeholder="Email">
 
-<br>
+<select id="job">
+  <option>Employed</option>
+  <option>Self Employed</option>
+  <option>Unemployed</option>
+</select>
 
-<button onclick="alert('Loan submitted')">Submit Application</button>
+<input id="income" placeholder="Monthly Income (KES)">
+<input id="amount" placeholder="Loan Amount">
+<input id="months" placeholder="Repayment Months">
+
+<input id="reason" placeholder="Loan Purpose">
+
+<button onclick="submitLoan()">Submit Application</button>
+
+<script>
+async function submitLoan(){
+  const token = localStorage.getItem("token");
+
+  const data = {
+    name: name.value,
+    idno: idno.value,
+    phone: phone.value,
+    email: email.value,
+    job: job.value,
+    income: income.value,
+    amount: amount.value,
+    months: months.value,
+    reason: reason.value
+  };
+
+  const res = await fetch("http://localhost:5000/api/loans/apply", {
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization": token
+    },
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  alert("Loan submitted successfully");
+}
+</script>
 
 </body>
 </html>
