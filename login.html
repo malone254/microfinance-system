@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{background:#0f172a;color:white;font-family:Inter;text-align:center;padding:50px}
+body{background:#0b1220;color:white;font-family:Inter;text-align:center;padding:40px}
+
 input{
   width:80%;
   padding:12px;
@@ -13,12 +14,12 @@ input{
   border-radius:8px;
   border:none;
 }
+
 button{
   padding:12px 20px;
   background:#22c55e;
   border:none;
   border-radius:8px;
-  cursor:pointer;
 }
 </style>
 </head>
@@ -27,16 +28,27 @@ button{
 
 <h2>Login</h2>
 
-<input id="email" placeholder="Email"><br>
-<input id="password" type="password" placeholder="Password"><br>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
 
+<br>
 <button onclick="login()">Login</button>
 
-<p><a href="register.html" style="color:#22c55e">Create account</a></p>
-
 <script>
-function login(){
-  alert("Login logic connects to backend API");
+async function login(){
+  const res = await fetch("http://localhost:5000/api/auth/login",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      email:email.value,
+      password:password.value
+    })
+  });
+
+  const data = await res.json();
+
+  localStorage.setItem("token",data.token);
+
   location.href="dashboard.html";
 }
 </script>
