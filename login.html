@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{background:#0f172a;color:white;font-family:Inter;text-align:center;padding:50px}
+input{
+  width:80%;
+  padding:12px;
+  margin:10px;
+  border-radius:8px;
+  border:none;
+}
+button{
+  padding:12px 20px;
+  background:#22c55e;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Login</h2>
+
+<input id="email" placeholder="Email"><br>
+<input id="password" type="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<p><a href="register.html" style="color:#22c55e">Create account</a></p>
+
+<script>
+function login(){
+  alert("Login logic connects to backend API");
+  location.href="dashboard.html";
+}
+</script>
+
+</body>
+</html>
