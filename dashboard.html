@@ -1,261 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
+<title>Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loan Dashboard</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-}
-
-body{
-  background:#0b1220;
-  color:white;
-}
-
-/* LAYOUT */
-.container{
-  display:flex;
-  min-height:100vh;
-}
-
-/* SIDEBAR */
-.sidebar{
-  width:250px;
-  background:#0f172a;
-  padding:20px;
-}
-
-.logo{
-  font-size:22px;
-  font-weight:800;
-  color:#22c55e;
-  margin-bottom:30px;
-}
-
-.menu{
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
-
-.menu div{
-  padding:10px;
-  border-radius:8px;
-  cursor:pointer;
-  opacity:0.8;
-}
-
-.menu div:hover{
-  background:#1e293b;
-  opacity:1;
-}
-
-/* MAIN */
-.main{
-  flex:1;
-  padding:20px;
-}
-
-/* TOP BAR */
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.search{
-  padding:10px;
-  border-radius:8px;
-  border:none;
-  width:250px;
-}
-
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
-  margin-bottom:20px;
-}
+body{background:#0b1220;color:white;font-family:Inter;padding:20px}
 
 .card{
   background:#111827;
   padding:20px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.05);
+  margin:10px;
+  border-radius:10px;
 }
 
-.card h3{
-  color:#22c55e;
-}
-
-/* TABLE */
-table{
-  width:100%;
-  border-collapse:collapse;
-  background:#111827;
-  border-radius:12px;
-  overflow:hidden;
-}
-
-th, td{
-  padding:12px;
-  text-align:left;
-  border-bottom:1px solid rgba(255,255,255,0.05);
-}
-
-th{
-  background:#0f172a;
-  color:#22c55e;
-}
-
-.status{
-  padding:5px 10px;
-  border-radius:8px;
-  font-size:12px;
-}
-
-.pending{background:orange; color:black;}
-.approved{background:green;}
-.rejected{background:red;}
-
-/* BUTTON */
-.btn{
-  padding:6px 10px;
+button{
+  padding:10px;
+  background:#22c55e;
   border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:12px;
-}
-
-.approve{background:#22c55e;}
-.reject{background:#ef4444;}
-
-@media(max-width:768px){
-  .sidebar{display:none;}
+  border-radius:8px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<h2>User Dashboard</h2>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="logo">QuickLoan</div>
+<div class="card">
+  <h3>Apply Loan</h3>
+  <button onclick="location.href='apply-loan.html'">Apply</button>
+</div>
 
-    <div class="menu">
-      <div>📊 Dashboard</div>
-      <div>💰 Loans</div>
-      <div>👤 Users</div>
-      <div>💳 Payments</div>
-      <div>⚙️ Settings</div>
-    </div>
-  </div>
-
-  <!-- MAIN -->
-  <div class="main">
-
-    <!-- TOP BAR -->
-    <div class="topbar">
-      <h2>Admin Dashboard</h2>
-      <input class="search" placeholder="Search users or loans...">
-    </div>
-
-    <!-- CARDS -->
-    <div class="cards">
-      <div class="card">
-        <h3>₵120,000</h3>
-        <p>Total Loans</p>
-      </div>
-
-      <div class="card">
-        <h3>350</h3>
-        <p>Active Users</p>
-      </div>
-
-      <div class="card">
-        <h3>42</h3>
-        <p>Pending Requests</p>
-      </div>
-
-      <div class="card">
-        <h3>98%</h3>
-        <p>Approval Rate</p>
-      </div>
-    </div>
-
-    <!-- LOAN TABLE -->
-    <table>
-      <tr>
-        <th>User</th>
-        <th>Amount</th>
-        <th>Duration</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-
-      <tr>
-        <td>John Doe</td>
-        <td>10,000</td>
-        <td>3 Months</td>
-        <td><span class="status pending">Pending</span></td>
-        <td>
-          <button class="btn approve" onclick="update(this,'Approved')">Approve</button>
-          <button class="btn reject" onclick="update(this,'Rejected')">Reject</button>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Mary Wanjiku</td>
-        <td>5,000</td>
-        <td>2 Months</td>
-        <td><span class="status approved">Approved</span></td>
-        <td>-</td>
-      </tr>
-
-      <tr>
-        <td>Peter Kimani</td>
-        <td>20,000</td>
-        <td>6 Months</td>
-        <td><span class="status pending">Pending</span></td>
-        <td>
-          <button class="btn approve" onclick="update(this,'Approved')">Approve</button>
-          <button class="btn reject" onclick="update(this,'Rejected')">Reject</button>
-        </td>
-      </tr>
-
-    </table>
-
-  </div>
+<div class="card">
+  <h3>My Loans</h3>
+  <div id="loans"></div>
 </div>
 
 <script>
-function update(btn, status){
-  let row = btn.parentElement.parentElement;
-  let statusCell = row.querySelector(".status");
+async function loadLoans(){
+  const token = localStorage.getItem("token");
 
-  if(status === "Approved"){
-    statusCell.innerText = "Approved";
-    statusCell.className = "status approved";
-  } else {
-    statusCell.innerText = "Rejected";
-    statusCell.className = "status rejected";
-  }
+  const res = await fetch("http://localhost:5000/api/loans",{
+    headers:{Authorization:token}
+  });
 
-  btn.parentElement.innerHTML = "-";
+  const data = await res.json();
+
+  document.getElementById("loans").innerHTML =
+    data.map(l=>`<p>${l.amount} - ${l.status}</p>`).join("");
 }
+
+loadLoans();
 </script>
 
 </body>
-        </html>
+</html>
