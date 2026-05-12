@@ -3,182 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickLoan - Fast Digital Loans</title>
+<title>QuickLoan - Smart Digital Loans</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-}
-
 body{
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  margin:0;
+  font-family:Inter;
+  background: radial-gradient(circle at top,#0f172a,#020617);
   color:white;
-  overflow-x:hidden;
 }
 
-/* NAV */
 nav{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   padding:20px 8%;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:800;
-  color:#22c55e;
-}
+.logo{color:#22c55e;font-weight:800;font-size:22px}
 
-nav ul{
-  display:flex;
-  gap:20px;
-  list-style:none;
-}
-
-nav ul li{
-  opacity:0.8;
-  cursor:pointer;
-}
-
-nav ul li:hover{
-  opacity:1;
-}
-
-/* HERO */
 .hero{
   text-align:center;
-  padding:80px 20px 40px;
+  padding:90px 20px;
 }
 
 .hero h1{
-  font-size:48px;
-  font-weight:800;
+  font-size:50px;
 }
 
-.hero h1 span{
-  color:#22c55e;
-}
-
-.hero p{
-  margin-top:15px;
-  opacity:0.8;
-  font-size:18px;
-}
-
-.buttons{
-  margin-top:25px;
-}
+.hero span{color:#22c55e}
 
 .btn{
-  padding:12px 22px;
+  padding:12px 20px;
   border:none;
   border-radius:10px;
   cursor:pointer;
-  font-weight:600;
-  margin:5px;
-  transition:0.3s;
+  margin:10px;
 }
 
-.primary{
-  background:#22c55e;
-  color:black;
-}
+.primary{background:#22c55e;color:black}
+.secondary{background:transparent;border:1px solid #22c55e;color:#22c55e}
 
-.primary:hover{
-  background:#16a34a;
-}
-
-.secondary{
-  background:transparent;
-  border:1px solid #22c55e;
-  color:#22c55e;
-}
-
-.secondary:hover{
-  background:#22c55e;
-  color:black;
-}
-
-/* FEATURES */
-.features{
+.section{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
-  padding:60px 8%;
+  padding:50px 8%;
 }
 
 .card{
   background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  padding:25px;
+  padding:20px;
   border-radius:15px;
-  transition:0.3s;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  border-color:#22c55e;
-}
-
-.card h3{
-  margin-bottom:10px;
-  color:#22c55e;
-}
-
-/* STATS */
-.stats{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  padding:40px;
-  flex-wrap:wrap;
-}
-
-.stat{
-  text-align:center;
-}
-
-.stat h2{
-  color:#22c55e;
-  font-size:28px;
-}
-
-/* CTA */
-.cta{
-  margin:60px auto;
-  text-align:center;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:black;
-  padding:40px;
-  border-radius:20px;
-  width:80%;
-}
-
-.cta h2{
-  font-size:28px;
-  margin-bottom:10px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:30px;
-  opacity:0.6;
-  font-size:14px;
-}
-
-@media(max-width:768px){
-  .hero h1{font-size:32px;}
-  nav ul{display:none;}
-}
+footer{text-align:center;padding:30px;opacity:0.6}
 </style>
 </head>
 
@@ -186,68 +66,38 @@ footer{
 
 <nav>
   <div class="logo">QuickLoan</div>
-  <ul>
-    <li>Home</li>
-    <li>Loans</li>
-    <li>How it works</li>
-    <li>Contact</li>
-  </ul>
+  <div>
+    <a href="login.html" style="color:white;margin-right:15px">Login</a>
+    <a href="register.html" style="color:#22c55e">Get Started</a>
+  </div>
 </nav>
 
 <section class="hero">
-  <h1>Fast & Secure <span>Digital Loans</span></h1>
-  <p>Get instant access to personal loans with flexible repayment and low interest rates.</p>
+  <h1>Fast & Secure <span>Loans</span> Anytime</h1>
+  <p>Get instant financial support with flexible repayment options.</p>
 
-  <div class="buttons">
-    <button class="btn primary" onclick="alert('Redirect to application page')">Apply Now</button>
-    <button class="btn secondary">Learn More</button>
-  </div>
+  <button class="btn primary" onclick="location.href='register.html'">Apply Now</button>
+  <button class="btn secondary" onclick="location.href='login.html'">Login</button>
 </section>
 
-<section class="features">
+<section class="section">
   <div class="card">
     <h3>⚡ Instant Approval</h3>
-    <p>Get loan approval within minutes using our smart system.</p>
+    <p>Get loans approved in minutes.</p>
   </div>
 
   <div class="card">
     <h3>🔒 Secure System</h3>
-    <p>Bank-level encryption keeps your data fully protected.</p>
+    <p>Bank-level security protection.</p>
   </div>
 
   <div class="card">
     <h3>📊 Flexible Repayment</h3>
-    <p>Choose repayment plans that fit your income cycle.</p>
+    <p>Pay at your own pace.</p>
   </div>
 </section>
 
-<section class="stats">
-  <div class="stat">
-    <h2>50K+</h2>
-    <p>Users</p>
-  </div>
-
-  <div class="stat">
-    <h2>₵10B+</h2>
-    <p>Loans Given</p>
-  </div>
-
-  <div class="stat">
-    <h2>98%</h2>
-    <p>Approval Rate</p>
-  </div>
-</section>
-
-<section class="cta">
-  <h2>Ready to get your loan?</h2>
-  <p>Join thousands of users getting fast financial support.</p>
-  <br>
-  <button class="btn primary">Start Application</button>
-</section>
-
-<footer>
-  © 2026 QuickLoan. All rights reserved.
-</footer>
+<footer>© 2026 QuickLoan</footer>
 
 </body>
-    </html>
+</html>
