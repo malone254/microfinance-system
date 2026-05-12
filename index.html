@@ -1,103 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
+<title>QuickLoan User</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickLoan - Smart Digital Loans</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
   font-family:Inter;
-  background: radial-gradient(circle at top,#0f172a,#020617);
+  background:linear-gradient(#0f172a,#020617);
   color:white;
+  text-align:center;
 }
-
-nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 8%;
-}
-
-.logo{color:#22c55e;font-weight:800;font-size:22px}
 
 .hero{
-  text-align:center;
-  padding:90px 20px;
+  padding:80px 20px;
 }
 
-.hero h1{
-  font-size:50px;
-}
-
-.hero span{color:#22c55e}
+h1{font-size:40px}
+span{color:#22c55e}
 
 .btn{
   padding:12px 20px;
   border:none;
   border-radius:10px;
-  cursor:pointer;
   margin:10px;
+  cursor:pointer;
 }
 
-.primary{background:#22c55e;color:black}
-.secondary{background:transparent;border:1px solid #22c55e;color:#22c55e}
-
-.section{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-  padding:50px 8%;
-}
-
-.card{
-  background:rgba(255,255,255,0.05);
-  padding:20px;
-  border-radius:15px;
-}
-
-footer{text-align:center;padding:30px;opacity:0.6}
+.green{background:#22c55e}
+.dark{background:transparent;border:1px solid #22c55e;color:#22c55e}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">QuickLoan</div>
-  <div>
-    <a href="login.html" style="color:white;margin-right:15px">Login</a>
-    <a href="register.html" style="color:#22c55e">Get Started</a>
-  </div>
-</nav>
+<div class="hero">
+  <h1>Fast <span>Loans</span> Anytime</h1>
+  <p>Borrow, track and repay easily</p>
 
-<section class="hero">
-  <h1>Fast & Secure <span>Loans</span> Anytime</h1>
-  <p>Get instant financial support with flexible repayment options.</p>
-
-  <button class="btn primary" onclick="location.href='register.html'">Apply Now</button>
-  <button class="btn secondary" onclick="location.href='login.html'">Login</button>
-</section>
-
-<section class="section">
-  <div class="card">
-    <h3>⚡ Instant Approval</h3>
-    <p>Get loans approved in minutes.</p>
-  </div>
-
-  <div class="card">
-    <h3>🔒 Secure System</h3>
-    <p>Bank-level security protection.</p>
-  </div>
-
-  <div class="card">
-    <h3>📊 Flexible Repayment</h3>
-    <p>Pay at your own pace.</p>
-  </div>
-</section>
-
-<footer>© 2026 QuickLoan</footer>
+  <button class="btn green" onclick="location.href='register.html'">Get Started</button>
+  <button class="btn dark" onclick="location.href='login.html'">Login</button>
+</div>
 
 </body>
 </html>
