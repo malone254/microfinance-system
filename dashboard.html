@@ -15,68 +15,46 @@ body{
   color:white;
 }
 
-/* TOP BAR */
 .topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:15px 8%;
   background:#0f172a;
-  position:sticky;
-  top:0;
 }
 
-.logo{
-  font-weight:800;
-  color:#22c55e;
-}
+.logo{color:#22c55e;font-weight:800;}
+.logout{background:#111827;padding:10px 14px;border-radius:10px;color:white;text-decoration:none;}
 
-.logout{
-  background:#111827;
-  padding:10px 14px;
-  border-radius:10px;
-  color:white;
-  text-decoration:none;
-}
-
-/* CONTAINER */
 .container{
   max-width:900px;
   margin:auto;
   padding:25px;
 }
 
-/* STEPS */
 .step{
   display:none;
   background:#111827;
   padding:25px;
   border-radius:16px;
   margin-bottom:20px;
-  border:1px solid rgba(255,255,255,0.06);
 }
 
-.step.active{
-  display:block;
-}
+.step.active{display:block;}
 
-h2{
-  color:#22c55e;
-}
+h2{color:#22c55e;}
 
-/* INPUTS */
 input, select{
   width:100%;
   padding:14px;
   margin:10px 0;
   border-radius:10px;
-  border:none;
   background:#0f172a;
   color:white;
   border:1px solid rgba(255,255,255,0.05);
+  outline:none;
 }
 
-/* BUTTONS */
 .btns{
   display:flex;
   gap:10px;
@@ -91,32 +69,20 @@ button{
   cursor:pointer;
 }
 
-.next{
-  background:#22c55e;
-  color:black;
-}
+.next{background:#22c55e;color:black;}
+.back{background:#1f2937;color:white;}
 
-.back{
-  background:#1f2937;
-  color:white;
-}
-
-/* CHECKBOX */
 label{
-  display:flex;
-  gap:10px;
-  align-items:center;
+  font-size:13px;
+  display:block;
   margin-top:10px;
-  font-size:14px;
 }
 
-/* FOOTER */
 .footer{
   text-align:center;
-  padding:30px;
+  padding:25px;
   font-size:12px;
   opacity:0.7;
-  border-top:1px solid rgba(255,255,255,0.08);
 }
 </style>
 </head>
@@ -134,25 +100,26 @@ label{
 <div class="step active" id="step1">
 <h2>1. Personal Information</h2>
 
-<input placeholder="First Name">
+<input id="fname" placeholder="First Name">
 <input placeholder="Middle Name (optional)">
-<input placeholder="Last Name">
+<input id="lname" placeholder="Last Name">
 
-<input type="date">
+<!-- MANUAL DOB -->
+<input id="dob" placeholder="Date of Birth (dd.mm.yyyy)">
 
-<input placeholder="National ID">
-<input placeholder="E-mail">
+<input id="nid" placeholder="National ID Number">
+<input id="email" placeholder="E-mail">
 
-<select>
-<option>Gender</option>
-<option>Male</option>
-<option>Female</option>
+<select id="gender">
+  <option value="">Select Gender</option>
+  <option>Male</option>
+  <option>Female</option>
 </select>
 
-<input placeholder="+254 Alternative Phone">
+<input id="altphone" placeholder="+254 Alternative Phone (optional)">
 
 <div class="btns">
-  <button class="next" onclick="nextStep(1)">Continue</button>
+  <button class="next" onclick="validateStep1()">Continue</button>
 </div>
 </div>
 
@@ -160,19 +127,19 @@ label{
 <div class="step" id="step2">
 <h2>2. Location</h2>
 
-<select>
-<option>Select County</option>
+<select id="county">
+<option value="">Select County</option>
 <option>Nairobi</option>
 <option>Mombasa</option>
 <option>Kisumu</option>
 <option>Nakuru</option>
 </select>
 
-<input placeholder="Town">
+<input id="town" placeholder="Town">
 
 <div class="btns">
-  <button class="back" onclick="prevStep(2)">Back</button>
-  <button class="next" onclick="nextStep(2)">Continue</button>
+  <button class="back" onclick="goBack(2)">Back</button>
+  <button class="next" onclick="validateStep2()">Continue</button>
 </div>
 </div>
 
@@ -180,27 +147,27 @@ label{
 <div class="step" id="step3">
 <h2>3. Education & Employment</h2>
 
-<select>
-<option>Education</option>
+<select id="edu">
+<option value="">Education</option>
 <option>Primary</option>
 <option>Secondary</option>
 <option>College</option>
 <option>University</option>
 </select>
 
-<select>
-<option>Employment</option>
+<select id="emp">
+<option value="">Employment</option>
 <option>Employed</option>
 <option>Self-employed</option>
 <option>Student</option>
 <option>Unemployed</option>
 </select>
 
-<input placeholder="Monthly Income">
+<input id="income" placeholder="Monthly Income">
 
 <div class="btns">
-  <button class="back" onclick="prevStep(3)">Back</button>
-  <button class="next" onclick="nextStep(3)">Continue</button>
+  <button class="back" onclick="goBack(3)">Back</button>
+  <button class="next" onclick="validateStep3()">Continue</button>
 </div>
 </div>
 
@@ -208,13 +175,13 @@ label{
 <div class="step" id="step4">
 <h2>4. Financial Info</h2>
 
-<select><option>Children under 18?</option><option>Yes</option><option>No</option></select>
-<select><option>Active loan?</option><option>Yes</option><option>No</option></select>
-<select><option>Monthly income?</option><option>Yes</option><option>No</option></select>
+<select id="kids"><option value="">Children under 18?</option><option>Yes</option><option>No</option></select>
+<select id="loan"><option value="">Active loan?</option><option>Yes</option><option>No</option></select>
+<select id="monthly"><option value="">Monthly income?</option><option>Yes</option><option>No</option></select>
 
 <div class="btns">
-  <button class="back" onclick="prevStep(4)">Back</button>
-  <button class="next" onclick="nextStep(4)">Continue</button>
+  <button class="back" onclick="goBack(4)">Back</button>
+  <button class="next" onclick="validateStep4()">Continue</button>
 </div>
 </div>
 
@@ -222,12 +189,12 @@ label{
 <div class="step" id="step5">
 <h2>5. Device & Consent</h2>
 
-<select><option>Only user of device?</option><option>Yes</option><option>No</option></select>
-<select><option>Contact before due date?</option><option>Yes</option><option>No</option></select>
+<select id="device"><option value="">Only user of device?</option><option>Yes</option><option>No</option></select>
+<select id="contact"><option value="">Contact before due date?</option><option>Yes</option><option>No</option></select>
 
 <div class="btns">
-  <button class="back" onclick="prevStep(5)">Back</button>
-  <button class="next" onclick="nextStep(5)">Continue</button>
+  <button class="back" onclick="goBack(5)">Back</button>
+  <button class="next" onclick="validateStep5()">Continue</button>
 </div>
 </div>
 
@@ -235,11 +202,11 @@ label{
 <div class="step" id="step6">
 <h2>6. Income History</h2>
 
-<select><option>Income last month?</option><option>Yes</option><option>No</option></select>
+<select id="lastIncome"><option value="">Income last month?</option><option>Yes</option><option>No</option></select>
 
 <div class="btns">
-  <button class="back" onclick="prevStep(6)">Back</button>
-  <button class="next" onclick="nextStep(6)">Continue</button>
+  <button class="back" onclick="goBack(6)">Back</button>
+  <button class="next" onclick="validateStep6()">Continue</button>
 </div>
 </div>
 
@@ -247,11 +214,11 @@ label{
 <div class="step" id="step7">
 <h2>7. Contact Person</h2>
 
-<input placeholder="Contact Name">
-<input placeholder="+254 Contact Phone">
+<input id="cname" placeholder="Contact Name">
+<input id="cphone" placeholder="+254 Contact Phone">
 
-<select>
-<option>Relationship</option>
+<select id="relation">
+<option value="">Relationship</option>
 <option>Parent</option>
 <option>Sibling</option>
 <option>Friend</option>
@@ -259,24 +226,22 @@ label{
 </select>
 
 <div class="btns">
-  <button class="back" onclick="prevStep(7)">Back</button>
-  <button class="next" onclick="nextStep(7)">Continue</button>
+  <button class="back" onclick="goBack(7)">Back</button>
+  <button class="next" onclick="validateStep7()">Continue</button>
 </div>
 </div>
 
 <!-- STEP 8 -->
 <div class="step" id="step8">
-<h2>8. Final Confirmation</h2>
-
-<p>Review your details before submitting.</p>
+<h2>8. Final Agreement</h2>
 
 <label>
-  <input type="checkbox" id="agree">
-  I agree to the Terms and Conditions and Privacy Policy
+<input type="checkbox" id="agree">
+I agree to Terms & Conditions and Privacy Policy
 </label>
 
 <div class="btns">
-  <button class="back" onclick="prevStep(8)">Back</button>
+  <button class="back" onclick="goBack(8)">Back</button>
   <button class="next" onclick="submitForm()">Submit</button>
 </div>
 </div>
@@ -284,27 +249,100 @@ label{
 </div>
 
 <div class="footer">
-© 2021-2026 AVENTUS TECHNOLOGY LIMITED. REGISTERED IN KENYA. CBK REGULATED 2025
+© 2021-2026 AVENTUS TECHNOLOGY LIMITED. CBK REGULATED KENYA
 </div>
 
 <script>
-function nextStep(n){
-  document.getElementById("step"+n).classList.remove("active");
-  document.getElementById("step"+(n+1)).classList.add("active");
+
+function showStep(n){
+  document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+  document.getElementById("step"+n).classList.add("active");
 }
 
-function prevStep(n){
-  document.getElementById("step"+n).classList.remove("active");
-  document.getElementById("step"+(n-1)).classList.add("active");
+/* BACK */
+function goBack(n){
+  showStep(n-1);
 }
 
+/* VALIDATION STEP 1 */
+function validateStep1(){
+  if(
+    !fname.value ||
+    !lname.value ||
+    !dob.value ||
+    !nid.value ||
+    !email.value ||
+    !gender.value
+  ){
+    alert("Please fill all required fields");
+    return;
+  }
+  showStep(2);
+}
+
+/* STEP 2 */
+function validateStep2(){
+  if(!county.value || !town.value){
+    alert("Fill location details");
+    return;
+  }
+  showStep(3);
+}
+
+/* STEP 3 */
+function validateStep3(){
+  if(!edu.value || !emp.value || !income.value){
+    alert("Complete education & employment");
+    return;
+  }
+  showStep(4);
+}
+
+/* STEP 4 */
+function validateStep4(){
+  if(!kids.value || !loan.value || !monthly.value){
+    alert("Complete financial info");
+    return;
+  }
+  showStep(5);
+}
+
+/* STEP 5 */
+function validateStep5(){
+  if(!device.value || !contact.value){
+    alert("Complete device info");
+    return;
+  }
+  showStep(6);
+}
+
+/* STEP 6 */
+function validateStep6(){
+  if(!lastIncome.value){
+    alert("Complete income history");
+    return;
+  }
+  showStep(7);
+}
+
+/* STEP 7 */
+function validateStep7(){
+  if(!cname.value || !cphone.value || !relation.value){
+    alert("Complete contact person");
+    return;
+  }
+  showStep(8);
+}
+
+/* FINAL */
 function submitForm(){
-  if(!document.getElementById("agree").checked){
-    alert("You must agree to Terms & Conditions");
+  if(!agree.checked){
+    alert("You must agree to Terms");
     return;
   }
   window.location.href = "confirm.html";
 }
+
 </script>
 
 </body>
