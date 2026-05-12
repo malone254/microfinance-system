@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LendPlus - Dashboard</title>
+<title>LendPlus - Loan Application</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -13,7 +13,6 @@ body{
   font-family:Inter;
   background:#0b1220;
   color:white;
-  line-height:1.5;
 }
 
 /* TOP BAR */
@@ -21,320 +20,350 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 8%;
+  padding:15px 8%;
   background:#0f172a;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .logo{
-  font-weight:800;
   color:#22c55e;
-  letter-spacing:1px;
+  font-weight:800;
 }
 
-.logout{
-  background:#111827;
-  padding:10px 16px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.1);
-  cursor:pointer;
-  color:white;
-}
-
-/* PAGE CONTAINER */
 .container{
-  max-width:900px;
+  max-width:850px;
   margin:auto;
-  padding:30px 18px;
+  padding:20px;
 }
 
-/* CARDS */
 .card{
   background:#111827;
-  padding:28px;
-  border-radius:16px;
-  margin-bottom:28px;
-  border:1px solid rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:15px;
+  margin-top:20px;
 }
 
-/* TITLES */
 h2{
   color:#22c55e;
-  margin-bottom:18px;
-  font-size:20px;
+  margin-bottom:15px;
 }
 
-/* GRID FORM */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+  gap:15px;
 }
 
 label{
   font-size:13px;
   opacity:0.8;
+  margin-bottom:6px;
+  display:block;
 }
 
-/* INPUTS */
 input, select{
   width:100%;
-  padding:13px 14px;
+  padding:12px;
   border-radius:10px;
   border:none;
   outline:none;
   background:#0f172a;
   color:white;
   border:1px solid rgba(255,255,255,0.08);
-  font-size:14px;
 }
 
-/* DOB hidden until click */
-.hidden-date{
-  display:none;
-}
-
-/* BUTTON */
 button{
   width:100%;
-  padding:15px;
+  padding:14px;
+  margin-top:20px;
   background:#22c55e;
   border:none;
   border-radius:12px;
-  font-weight:800;
+  font-weight:700;
   cursor:pointer;
-  margin-top:22px;
-  font-size:15px;
 }
 
-/* SUPPORT */
-.support{
-  background:#111827;
-  padding:22px;
-  border-radius:14px;
-  margin-top:10px;
-  border:1px solid rgba(255,255,255,0.05);
-  font-size:14px;
-  line-height:1.8;
+/* STEPS */
+.step{
+  display:none;
+}
+
+.step.active{
+  display:block;
 }
 
 /* FOOTER */
 .footer{
   text-align:center;
-  padding:35px 20px;
+  padding:25px;
   font-size:12px;
   opacity:0.7;
+  margin-top:30px;
   border-top:1px solid rgba(255,255,255,0.1);
-  margin-top:40px;
-}
-
-.footer a{
-  color:white;
-  display:block;
-  margin-top:6px;
-  text-decoration:none;
-  opacity:0.8;
-}
-
-/* RESPONSIVE */
-@media(max-width:700px){
-  .grid{
-    grid-template-columns:1fr;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
   <div class="logo">LENDPLUS</div>
-  <div class="logout" onclick="logout()">Logout</div>
+  <div onclick="logout()">Logout</div>
 </div>
 
-<!-- CONTENT -->
 <div class="container">
 
-<!-- PERSONAL INFO -->
-<div class="card">
-  <h2>1. Personal Information</h2>
+<!-- STEP 1 -->
+<div class="card step active" id="step1">
+<h2>1. Personal Information</h2>
 
-  <div class="grid">
+<div class="grid">
 
-    <div class="field">
-      <label>First Name</label>
-      <input type="text">
-    </div>
-
-    <div class="field">
-      <label>Middle Name (optional)</label>
-      <input type="text">
-    </div>
-
-    <div class="field">
-      <label>Last Name</label>
-      <input type="text">
-    </div>
-
-    <div class="field">
-      <label>Date of Birth</label>
-      <input type="date" id="dob" class="hidden-date" onclick="this.showPicker()">
-      <input type="text" placeholder="Tap to select date of birth" onclick="openDOB()" readonly>
-    </div>
-
-    <div class="field">
-      <label>National ID Number</label>
-      <input type="text">
-    </div>
-
-    <div class="field">
-      <label>Email</label>
-      <input type="email">
-    </div>
-
-    <div class="field">
-      <label>Gender</label>
-      <select>
-        <option>- select -</option>
-        <option>Male</option>
-        <option>Female</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Alternative Phone</label>
-      <input type="tel" placeholder="+254">
-    </div>
-
-  </div>
+<div>
+<label>First Name</label>
+<input type="text">
 </div>
 
-<!-- ADDITIONAL INFO -->
-<div class="card">
-  <h2>2. Additional Information</h2>
-
-  <div class="grid">
-
-    <div class="field">
-      <label>County</label>
-      <select>
-        <option>- select county -</option>
-        <option>Nairobi</option>
-        <option>Mombasa</option>
-        <option>Kisumu</option>
-        <option>Nakuru</option>
-        <option>Kiambu</option>
-        <option>Machakos</option>
-        <option>Uasin Gishu</option>
-        <option>Kakamega</option>
-        <option>Meru</option>
-        <option>Kilifi</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Town</label>
-      <input type="text">
-    </div>
-
-    <div class="field">
-      <label>Education</label>
-      <select>
-        <option>- select -</option>
-        <option>Primary</option>
-        <option>Secondary</option>
-        <option>Diploma</option>
-        <option>Degree</option>
-        <option>Postgraduate</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Employment Type</label>
-      <select>
-        <option>- select -</option>
-        <option>Employed</option>
-        <option>Self Employed</option>
-        <option>Unemployed</option>
-        <option>Student</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Monthly Income</label>
-      <select>
-        <option>- select -</option>
-        <option>Below 10,000</option>
-        <option>10,000 - 30,000</option>
-        <option>30,000 - 50,000</option>
-        <option>50,000 - 100,000</option>
-        <option>100,000+</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Active Loan?</label>
-      <select>
-        <option>- select -</option>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-    </div>
-
-  </div>
-
-  <button onclick="goConfirm()">Continue</button>
+<div>
+<label>Middle Name</label>
+<input type="text">
 </div>
 
-<!-- SUPPORT -->
-<div class="support">
-<b>Support Service</b><br>
-0709-029-000 (Mon–Sun: 8am–6pm)<br><br>
+<div>
+<label>Last Name</label>
+<input type="text">
+</div>
 
-<b>Email</b><br>
-customer@lendplus.ke<br><br>
+<div>
+<label>Date of Birth</label>
+<input type="date">
+</div>
 
-<b>Application</b><br>
-24/7
+<div>
+<label>National ID</label>
+<input type="text">
+</div>
+
+<div>
+<label>Email</label>
+<input type="email">
+</div>
+
+<div>
+<label>Gender</label>
+<select>
+<option>- select -</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+
+<div>
+<label>Phone (+254)</label>
+<input type="tel">
+</div>
+
+</div>
+
+<button onclick="nextStep(2)">Continue</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="card step" id="step2">
+<h2>2. Residence Information</h2>
+
+<div class="grid">
+
+<div>
+<label>County</label>
+<select>
+<option>- select county -</option>
+<option>Nairobi</option>
+<option>Mombasa</option>
+<option>Kisumu</option>
+<option>Nakuru</option>
+<option>Kiambu</option>
+<option>Machakos</option>
+<option>Eldoret</option>
+<option>Kakamega</option>
+</select>
+</div>
+
+<div>
+<label>Town</label>
+<input type="text">
+</div>
+
+<div>
+<label>Housing Type</label>
+<select>
+<option>Renting</option>
+<option>Owned</option>
+<option>Family</option>
+</select>
+</div>
+
+<div>
+<label>Monthly Rent</label>
+<input type="number">
+</div>
+
+</div>
+
+<button onclick="nextStep(3)">Continue</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="card step" id="step3">
+<h2>3. Employment</h2>
+
+<div class="grid">
+
+<div>
+<label>Employment Type</label>
+<select>
+<option>Employed</option>
+<option>Self Employed</option>
+<option>Unemployed</option>
+<option>Student</option>
+</select>
+</div>
+
+<div>
+<label>Employer Name</label>
+<input type="text">
+</div>
+
+<div>
+<label>Job Title</label>
+<input type="text">
+</div>
+
+<div>
+<label>Work Experience (years)</label>
+<input type="number">
+</div>
+
+</div>
+
+<button onclick="nextStep(4)">Continue</button>
+</div>
+
+<!-- STEP 4 -->
+<div class="card step" id="step4">
+<h2>4. Financial Information</h2>
+
+<div class="grid">
+
+<div>
+<label>Monthly Income</label>
+<input type="number">
+</div>
+
+<div>
+<label>Income Source</label>
+<select>
+<option>Salary</option>
+<option>Business</option>
+<option>Freelance</option>
+<option>Farming</option>
+</select>
+</div>
+
+<div>
+<label>Existing Loans</label>
+<select>
+<option>Yes</option>
+<option>No</option>
+</select>
+</div>
+
+<div>
+<label>M-Pesa Number</label>
+<input type="tel">
+</div>
+
+</div>
+
+<button onclick="nextStep(5)">Continue</button>
+</div>
+
+<!-- STEP 5 -->
+<div class="card step" id="step5">
+<h2>5. Emergency Contact</h2>
+
+<div class="grid">
+
+<div>
+<label>Full Name</label>
+<input type="text">
+</div>
+
+<div>
+<label>Relationship</label>
+<select>
+<option>Parent</option>
+<option>Sibling</option>
+<option>Friend</option>
+<option>Spouse</option>
+</select>
+</div>
+
+<div>
+<label>Phone</label>
+<input type="tel">
+</div>
+
+</div>
+
+<button onclick="nextStep(6)">Continue</button>
+</div>
+
+<!-- STEP 6 -->
+<div class="card step" id="step6">
+<h2>6. Consent & Submit</h2>
+
+<p style="font-size:13px;opacity:0.8;line-height:1.6;">
+By continuing, you agree to data processing and credit verification with  
+Credit Reference Bureau Kenya.
+</p>
+
+<div class="grid">
+
+<div>
+<label>
+<input type="checkbox"> I agree to Terms & Privacy Policy
+</label>
+</div>
+
+</div>
+
+<button onclick="submitForm()">Submit Application</button>
 </div>
 
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-© 2021-2026 AVENTUS TECHNOLOGY LIMITED
-
-<a href="#">Privacy Policy</a>
-<a href="#">Terms and Conditions</a>
-<a href="#">Account Cancellation</a>
-<a href="#">Referral Bonuses</a>
-<a href="#">Licensed & regulated by CBK 2025</a>
+© 2021–2026 LendPlus. All rights reserved.
 </div>
 
 <script>
-function goConfirm(){
+let currentStep = 1;
+
+function nextStep(step){
+  document.getElementById("step"+currentStep).classList.remove("active");
+  currentStep = step;
+  document.getElementById("step"+currentStep).classList.add("active");
+}
+
+function submitForm(){
   window.location.href = "confirm.html";
 }
 
 function logout(){
   window.location.href = "login.html";
 }
-
-function openDOB(){
-  document.getElementById("dob").classList.remove("hidden-date");
-  document.getElementById("dob").focus();
-}
 </script>
 
 </body>
-  </html>
+</html>
