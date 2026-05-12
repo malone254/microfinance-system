@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LendPlus Dashboard</title>
+<title>Malone Lending - Dashboard</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -15,66 +15,108 @@ body{
   color:white;
 }
 
+/* TOP BAR */
 .topbar{
-  padding:15px 10%;
-  background:#0f172a;
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  padding:15px 8%;
+  background:#0f172a;
+  position:sticky;
+  top:0;
 }
 
 .logo{
-  color:#22c55e;
   font-weight:800;
+  color:#22c55e;
 }
 
+.logout{
+  background:#111827;
+  padding:10px 14px;
+  border-radius:10px;
+  color:white;
+  text-decoration:none;
+}
+
+/* CONTAINER */
 .container{
-  padding:30px 10%;
   max-width:900px;
   margin:auto;
+  padding:25px;
 }
 
-.card{
+/* STEPS */
+.step{
+  display:none;
   background:#111827;
   padding:25px;
-  border-radius:14px;
+  border-radius:16px;
   margin-bottom:20px;
   border:1px solid rgba(255,255,255,0.06);
 }
 
-.title{
-  color:#22c55e;
-  font-weight:700;
-  margin-bottom:15px;
+.step.active{
+  display:block;
 }
 
+h2{
+  color:#22c55e;
+}
+
+/* INPUTS */
 input, select{
   width:100%;
-  padding:13px;
-  margin:8px 0;
+  padding:14px;
+  margin:10px 0;
   border-radius:10px;
+  border:none;
   background:#0f172a;
-  border:1px solid rgba(255,255,255,0.08);
   color:white;
-  outline:none;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+/* BUTTONS */
+.btns{
+  display:flex;
+  gap:10px;
 }
 
 button{
-  width:100%;
+  flex:1;
   padding:14px;
   border:none;
-  border-radius:12px;
-  background:#22c55e;
+  border-radius:10px;
   font-weight:700;
-  margin-top:15px;
   cursor:pointer;
 }
 
-.step{ display:none; }
-.step.active{ display:block; }
+.next{
+  background:#22c55e;
+  color:black;
+}
 
-.progress{
-  margin-bottom:15px;
+.back{
+  background:#1f2937;
+  color:white;
+}
+
+/* CHECKBOX */
+label{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-top:10px;
+  font-size:14px;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:30px;
+  font-size:12px;
   opacity:0.7;
+  border-top:1px solid rgba(255,255,255,0.08);
 }
 </style>
 </head>
@@ -82,215 +124,187 @@ button{
 <body>
 
 <div class="topbar">
-  <div class="logo">MALONE LOANS</div>
+  <div class="logo">MALONE</div>
+  <a class="logout" href="login.html">Logout</a>
 </div>
 
 <div class="container">
 
-<div class="progress" id="progress">Step 1 of 8</div>
-
 <!-- STEP 1 -->
-<div class="card step active">
-  <div class="title">Personal Information</div>
+<div class="step active" id="step1">
+<h2>1. Personal Information</h2>
 
-  <input id="fn" placeholder="First Name">
-  <input id="ln" placeholder="Last Name">
-  <input id="idno" placeholder="National ID">
-  <input id="email" placeholder="Email">
+<input placeholder="First Name">
+<input placeholder="Middle Name (optional)">
+<input placeholder="Last Name">
 
-  <select id="gender">
-    <option value="">Gender</option>
-    <option>Male</option>
-    <option>Female</option>
-  </select>
+<input type="date">
 
-  <button onclick="validateStep1()">Continue</button>
+<input placeholder="National ID">
+<input placeholder="E-mail">
+
+<select>
+<option>Gender</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<input placeholder="+254 Alternative Phone">
+
+<div class="btns">
+  <button class="next" onclick="nextStep(1)">Continue</button>
+</div>
 </div>
 
 <!-- STEP 2 -->
-<div class="card step">
-  <div class="title">Location</div>
+<div class="step" id="step2">
+<h2>2. Location</h2>
 
-  <select id="county">
-    <option value="">County</option>
-    <option>Nairobi</option>
-    <option>Mombasa</option>
-    <option>Kisumu</option>
-    <option>Nakuru</option>
-  </select>
+<select>
+<option>Select County</option>
+<option>Nairobi</option>
+<option>Mombasa</option>
+<option>Kisumu</option>
+<option>Nakuru</option>
+</select>
 
-  <input id="town" placeholder="Town">
+<input placeholder="Town">
 
-  <button onclick="validateStep2()">Continue</button>
+<div class="btns">
+  <button class="back" onclick="prevStep(2)">Back</button>
+  <button class="next" onclick="nextStep(2)">Continue</button>
+</div>
 </div>
 
 <!-- STEP 3 -->
-<div class="card step">
-  <div class="title">Employment</div>
+<div class="step" id="step3">
+<h2>3. Education & Employment</h2>
 
-  <select id="edu">
-    <option value="">Education</option>
-    <option>Primary</option>
-    <option>Secondary</option>
-    <option>College</option>
-    <option>University</option>
-  </select>
+<select>
+<option>Education</option>
+<option>Primary</option>
+<option>Secondary</option>
+<option>College</option>
+<option>University</option>
+</select>
 
-  <select id="job">
-    <option value="">Employment Type</option>
-    <option>Employed</option>
-    <option>Self Employed</option>
-    <option>Business</option>
-    <option>Unemployed</option>
-  </select>
+<select>
+<option>Employment</option>
+<option>Employed</option>
+<option>Self-employed</option>
+<option>Student</option>
+<option>Unemployed</option>
+</select>
 
-  <button onclick="validateStep3()">Continue</button>
+<input placeholder="Monthly Income">
+
+<div class="btns">
+  <button class="back" onclick="prevStep(3)">Back</button>
+  <button class="next" onclick="nextStep(3)">Continue</button>
+</div>
 </div>
 
 <!-- STEP 4 -->
-<div class="card step">
-  <div class="title">Income</div>
+<div class="step" id="step4">
+<h2>4. Financial Info</h2>
 
-  <select id="income">
-    <option value="">Monthly Income</option>
-    <option>Below 10k</option>
-    <option>10k - 30k</option>
-    <option>30k - 50k</option>
-    <option>50k+</option>
-  </select>
+<select><option>Children under 18?</option><option>Yes</option><option>No</option></select>
+<select><option>Active loan?</option><option>Yes</option><option>No</option></select>
+<select><option>Monthly income?</option><option>Yes</option><option>No</option></select>
 
-  <select id="loan">
-    <option value="">Active Loan?</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
-
-  <button onclick="validateStep4()">Continue</button>
+<div class="btns">
+  <button class="back" onclick="prevStep(4)">Back</button>
+  <button class="next" onclick="nextStep(4)">Continue</button>
+</div>
 </div>
 
 <!-- STEP 5 -->
-<div class="card step">
-  <div class="title">Consent</div>
+<div class="step" id="step5">
+<h2>5. Device & Consent</h2>
 
-  <select id="contact">
-    <option value="">Agree to contact?</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
+<select><option>Only user of device?</option><option>Yes</option><option>No</option></select>
+<select><option>Contact before due date?</option><option>Yes</option><option>No</option></select>
 
-  <button onclick="validateStep5()">Continue</button>
+<div class="btns">
+  <button class="back" onclick="prevStep(5)">Back</button>
+  <button class="next" onclick="nextStep(5)">Continue</button>
+</div>
 </div>
 
 <!-- STEP 6 -->
-<div class="card step">
-  <div class="title">Contact Person</div>
+<div class="step" id="step6">
+<h2>6. Income History</h2>
 
-  <input id="cname" placeholder="Contact Name">
-  <input id="cphone" placeholder="Contact Phone">
+<select><option>Income last month?</option><option>Yes</option><option>No</option></select>
 
-  <select id="rel">
-    <option value="">Relationship</option>
-    <option>Parent</option>
-    <option>Friend</option>
-    <option>Sibling</option>
-  </select>
-
-  <button onclick="validateStep6()">Continue</button>
+<div class="btns">
+  <button class="back" onclick="prevStep(6)">Back</button>
+  <button class="next" onclick="nextStep(6)">Continue</button>
+</div>
 </div>
 
 <!-- STEP 7 -->
-<div class="card step">
-  <div class="title">Review</div>
-  <p>Please confirm all data is correct.</p>
+<div class="step" id="step7">
+<h2>7. Contact Person</h2>
 
-  <button onclick="next()">Continue</button>
+<input placeholder="Contact Name">
+<input placeholder="+254 Contact Phone">
+
+<select>
+<option>Relationship</option>
+<option>Parent</option>
+<option>Sibling</option>
+<option>Friend</option>
+<option>Spouse</option>
+</select>
+
+<div class="btns">
+  <button class="back" onclick="prevStep(7)">Back</button>
+  <button class="next" onclick="nextStep(7)">Continue</button>
+</div>
 </div>
 
 <!-- STEP 8 -->
-<div class="card step">
-  <div class="title">Submit</div>
-  <p>Submit your loan application.</p>
+<div class="step" id="step8">
+<h2>8. Final Confirmation</h2>
 
-  <button onclick="finish()">Submit</button>
+<p>Review your details before submitting.</p>
+
+<label>
+  <input type="checkbox" id="agree">
+  I agree to the Terms and Conditions and Privacy Policy
+</label>
+
+<div class="btns">
+  <button class="back" onclick="prevStep(8)">Back</button>
+  <button class="next" onclick="submitForm()">Submit</button>
+</div>
 </div>
 
+</div>
+
+<div class="footer">
+© 2021-2026 AVENTUS TECHNOLOGY LIMITED. REGISTERED IN KENYA. CBK REGULATED 2025
 </div>
 
 <script>
-
-let step = 0;
-const steps = document.querySelectorAll(".step");
-
-function show(){
-  steps.forEach((s,i)=>{
-    s.classList.remove("active");
-    if(i===step) s.classList.add("active");
-  });
-  document.getElementById("progress").innerText =
-  "Step " + (step+1) + " of 8";
+function nextStep(n){
+  document.getElementById("step"+n).classList.remove("active");
+  document.getElementById("step"+(n+1)).classList.add("active");
 }
 
-function next(){
-  step++;
-  show();
+function prevStep(n){
+  document.getElementById("step"+n).classList.remove("active");
+  document.getElementById("step"+(n-1)).classList.add("active");
 }
 
-/* VALIDATION FUNCTIONS */
-
-function validateStep1(){
-  if(
-    !fn.value || !ln.value || !idno.value || !email.value || !gender.value
-  ){
-    alert("Fill all Personal Information");
+function submitForm(){
+  if(!document.getElementById("agree").checked){
+    alert("You must agree to Terms & Conditions");
     return;
   }
-  next();
-}
-
-function validateStep2(){
-  if(!county.value || !town.value){
-    alert("Fill Location details");
-    return;
-  }
-  next();
-}
-
-function validateStep3(){
-  if(!edu.value || !job.value){
-    alert("Fill Employment details");
-    return;
-  }
-  next();
-}
-
-function validateStep4(){
-  if(!income.value || !loan.value){
-    alert("Fill Income details");
-    return;
-  }
-  next();
-}
-
-function validateStep5(){
-  if(!contact.value){
-    alert("Select consent option");
-    return;
-  }
-  next();
-}
-
-function validateStep6(){
-  if(!cname.value || !cphone.value || !rel.value){
-    alert("Fill contact person details");
-    return;
-  }
-  next();
-}
-
-function finish(){
   window.location.href = "confirm.html";
 }
-
 </script>
 
 </body>
