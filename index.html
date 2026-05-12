@@ -15,32 +15,62 @@ body{
   color:white;
 }
 
-/* NAV */
-nav{
+/* TOP BAR */
+.topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:15px 8%;
   background:#0f172a;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo{
   font-weight:800;
   color:#22c55e;
   font-size:20px;
+  letter-spacing:1px;
 }
 
-nav a{
-  color:white;
+/* NAV SQUARE BUTTONS */
+.menu{
+  display:flex;
+  gap:12px;
+}
+
+.nav-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  width:92px;
+  height:72px;
+
+  background:#111827;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+
   text-decoration:none;
-  margin-left:15px;
-  opacity:0.8;
+  color:white;
+  font-size:12px;
+  font-weight:600;
+
+  transition:0.3s ease;
+}
+
+.nav-card:hover{
+  transform:translateY(-4px);
+  border-color:#22c55e;
+  box-shadow:0 0 18px rgba(34,197,94,0.25);
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:80px 20px;
+  padding:90px 20px;
   background:linear-gradient(#0f172a,#020617);
 }
 
@@ -55,6 +85,7 @@ nav a{
 
 .hero p{
   opacity:0.8;
+  margin-bottom:20px;
 }
 
 .btn{
@@ -64,6 +95,7 @@ nav a{
   margin:10px;
   cursor:pointer;
   font-weight:600;
+  font-size:14px;
 }
 
 .green{
@@ -88,30 +120,32 @@ nav a{
   color:#22c55e;
 }
 
-/* CARDS */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:15px;
 }
 
+/* CARDS */
 .card{
   background:#111827;
   padding:20px;
-  border-radius:10px;
+  border-radius:12px;
   transition:0.3s;
+  border:1px solid rgba(255,255,255,0.05);
 }
 
 .card:hover{
   transform:translateY(-5px);
-  border:1px solid #22c55e;
+  border-color:#22c55e;
 }
 
 /* STEPS */
 .step{
   background:#111827;
-  padding:15px;
-  border-radius:10px;
+  padding:18px;
+  border-radius:12px;
 }
 
 /* FAQ */
@@ -119,7 +153,7 @@ nav a{
   background:#111827;
   padding:15px;
   margin-bottom:10px;
-  border-radius:8px;
+  border-radius:10px;
 }
 
 /* FOOTER */
@@ -127,130 +161,136 @@ footer{
   text-align:center;
   padding:20px;
   opacity:0.6;
-  border-top:1px solid rgba(255,255,255,0.1);
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .nav-card{
+    width:75px;
+    height:60px;
+    font-size:11px;
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
+<!-- NAVIGATION -->
+<div class="topbar">
   <div class="logo">MALONE</div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Loans</a>
-    <a href="#">Support</a>
-    <a href="login.html">Login</a>
+
+  <div class="menu">
+    <a href="index.html" class="nav-card">🏠 Home</a>
+    <a href="login.html" class="nav-card">🔐 Login</a>
+    <a href="loans.html" class="nav-card">💰 Loans</a>
   </div>
-</nav>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <h1>Get First Loan Online <span>Within 15 Minutes</span></h1>
   <p>Fast, safe and simple mobile loans in Kenya via M-Pesa</p>
 
-  <button class="btn green" onclick="location.href='register.html'">Apply for a Loan</button>
-  <button class="btn dark" onclick="location.href='login.html'">Log In</button>
+  <button class="btn green" onclick="location.href='register.html'">
+    Apply for Loan
+  </button>
+
+  <button class="btn dark" onclick="location.href='login.html'">
+    Log In
+  </button>
 </section>
 
 <!-- ADVANTAGES -->
 <section class="section">
+  <h2 class="title">Our Advantages</h2>
 
-<h2 class="title">Our Advantages</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>💰 Profitable</h3>
+      <p>Simple and quick solution at the tip of your fingers. Apply anywhere.</p>
+    </div>
 
-<div class="grid">
+    <div class="card">
+      <h3>🔐 Reliable</h3>
+      <p>We protect your data and ensure full confidentiality.</p>
+    </div>
 
-<div class="card">
-<h3>💰 Profitable</h3>
-<p>Simple and quick solution at the tip of your fingers. Apply anywhere you are.</p>
-</div>
-
-<div class="card">
-<h3>🔐 Reliable</h3>
-<p>Malone is a responsible lender ensuring data protection and confidentiality.</p>
-</div>
-
-<div class="card">
-<h3>⚡ Simple</h3>
-<p>Get loans within 15 minutes and receive money instantly via M-Pesa.</p>
-</div>
-
-</div>
-
+    <div class="card">
+      <h3>⚡ Simple</h3>
+      <p>Get money instantly in just 15 minutes via M-Pesa.</p>
+    </div>
+  </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="section">
+  <h2 class="title">How to Borrow Money</h2>
 
-<h2 class="title">How to Borrow Money</h2>
+  <div class="grid">
+    <div class="step">
+      <h3>1. Apply</h3>
+      <p>Fill in your details in the loan application form.</p>
+    </div>
 
-<div class="grid">
+    <div class="step">
+      <h3>2. Wait</h3>
+      <p>We review and approve your loan in minutes.</p>
+    </div>
 
-<div class="step">
-<h3>1. Leave a Request</h3>
-<p>Fill out the application form in the app or website.</p>
-</div>
-
-<div class="step">
-<h3>2. Wait for Decision</h3>
-<p>Approval usually takes 5–15 minutes.</p>
-</div>
-
-<div class="step">
-<h3>3. Receive Money</h3>
-<p>Funds are sent directly to your M-Pesa in minutes.</p>
-</div>
-
-</div>
-
+    <div class="step">
+      <h3>3. Receive</h3>
+      <p>Money is sent directly to your M-Pesa account.</p>
+    </div>
+  </div>
 </section>
 
 <!-- REQUIREMENTS -->
 <section class="section">
+  <h2 class="title">Loan Requirements</h2>
 
-<h2 class="title">Loan Requirements</h2>
-
-<div class="card">
-<p><b>Amount:</b> 1,000 KES – 150,000 KES</p>
-<p><b>Age:</b> 23 – 62 years</p>
-<p><b>Occupation:</b> Stable income required</p>
-<p><b>Location:</b> Kenya residents only</p>
-<p><b>Documents:</b> National ID & Mobile Phone</p>
-</div>
-
+  <div class="card">
+    <p>Amount: 1,000 KES – 150,000 KES</p>
+    <p>Age: 23 – 62 years</p>
+    <p>Employment: Stable income required</p>
+    <p>Location: Kenya residents only</p>
+    <p>Documents: National ID & Phone</p>
+  </div>
 </section>
 
 <!-- FAQ -->
 <section class="section">
+  <h2 class="title">FAQs</h2>
 
-<h2 class="title">FAQs</h2>
+  <div class="faq">
+    <b>What is an online loan?</b>
+    <p>A fast mobile loan sent directly to your M-Pesa account.</p>
+  </div>
 
-<div class="faq">
-<b>What is an online loan?</b>
-<p>A fast mobile loan you apply for and receive via M-Pesa instantly.</p>
-</div>
+  <div class="faq">
+    <b>How fast is approval?</b>
+    <p>Usually between 5–15 minutes.</p>
+  </div>
 
-<div class="faq">
-<b>How fast is approval?</b>
-<p>Usually between 5–15 minutes.</p>
-</div>
+  <div class="faq">
+    <b>Loan limit?</b>
+    <p>From 1,000 KES to 150,000 KES.</p>
+  </div>
 
-<div class="faq">
-<b>What is the loan limit?</b>
-<p>From 1,000 KES up to 150,000 KES depending on credit score.</p>
-</div>
-
-<div class="faq">
-<b>How do I repay?</b>
-<p>Through M-Pesa or Paybill provided in the app.</p>
-</div>
-
+  <div class="faq">
+    <b>Repayment?</b>
+    <p>Via M-Pesa or Paybill.</p>
+  </div>
 </section>
 
 <!-- CTA -->
 <section class="hero">
-  <h2>Download App & Get Your Loan Today</h2>
+  <h2>Start Your Loan Application Today</h2>
   <button class="btn green">Apply Now</button>
 </section>
 
@@ -260,4 +300,4 @@ footer{
 </footer>
 
 </body>
-  </html>
+</html>
