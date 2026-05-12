@@ -59,12 +59,22 @@ body{
   font-weight:600;
 
   transition:0.3s ease;
+
+  /* ✅ ADDED */
+  cursor:pointer;
 }
 
+/* ✅ ADDED ACTIVE CLICK EFFECT */
+.nav-card:active{
+  transform:scale(0.95);
+}
+
+/* ENHANCED HOVER (ADDED IMPROVEMENT) */
 .nav-card:hover{
   transform:translateY(-4px);
   border-color:#22c55e;
-  box-shadow:0 0 18px rgba(34,197,94,0.25);
+  box-shadow:0 0 18px rgba(34,197,94,0.35);
+  background:#0f172a;
 }
 
 /* HERO */
@@ -98,6 +108,11 @@ body{
   font-size:14px;
 }
 
+/* BUTTON IMPROVEMENT (ADDED) */
+.btn:active{
+  transform:scale(0.97);
+}
+
 .green{
   background:#22c55e;
   color:black;
@@ -120,14 +135,12 @@ body{
   color:#22c55e;
 }
 
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:15px;
 }
 
-/* CARDS */
 .card{
   background:#111827;
   padding:20px;
@@ -141,14 +154,12 @@ body{
   border-color:#22c55e;
 }
 
-/* STEPS */
 .step{
   background:#111827;
   padding:18px;
   border-radius:12px;
 }
 
-/* FAQ */
 .faq{
   background:#111827;
   padding:15px;
@@ -162,6 +173,14 @@ footer{
   padding:20px;
   opacity:0.6;
   border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* ✅ ADDED FOOTER LINKS STYLE */
+footer a{
+  color:#22c55e;
+  margin:0 8px;
+  text-decoration:none;
+  font-size:12px;
 }
 
 /* MOBILE */
@@ -297,7 +316,17 @@ footer{
 <!-- FOOTER -->
 <footer>
 © 2026 Malone Lending. All rights reserved.
+
+<br><br>
+
+<a href="privacy.html">Privacy policy</a>
+<a href="#">Terms and conditions</a>
+<a href="account-cancellation.html">Account Cancellation</a>
+<a href="#">Referral Bonuses</a>
+
+<br><br>
+Licensed & regulated by CBK 2025
 </footer>
 
 </body>
-</html>
+    </html>
