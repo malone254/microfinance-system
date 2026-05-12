@@ -346,6 +346,7 @@ button:hover{
 
 </div>
 
+<!-- ✅ ONLY CHANGE ADDED HERE -->
 <script>
 function continueLogin(){
 
@@ -358,7 +359,8 @@ function continueLogin(){
 
   localStorage.setItem("phone","+254"+phone);
 
-  window.location.href = "terms.html";
+  // ✅ ADDED: redirect to dashboard
+  window.location.href = "dashboard.html";
 }
 </script>
 
